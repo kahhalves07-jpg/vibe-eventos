@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vibe Eventos - Organização, planejamento, decoração, buffet, som, iluminação, fotografia e filmagem para eventos.">
+  <title>Vibe Eventos | Seu evento, nossa vibe</title>
+
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --bg-soft: #14141b;
+      --card: #1b1b24;
+      --text: #ffffff;
+      --muted: #b9b9c5;
+      --pink: #ff3f9f;
+      --purple: #8b5cf6;
+      --gold: #f5c451;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11,11,15,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--pink);
+    }
+
+    .menu {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      font-size: .95rem;
+    }
+
+    .menu a {
+      color: var(--muted);
+      transition: .2s;
+    }
+
+    .menu a:hover {
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      padding: 13px 21px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: .92;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 22px 80px;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(255,63,159,.22), transparent 32%),
+        radial-gradient(circle at 85% 70%, rgba(139,92,246,.22), transparent 35%),
+        var(--bg);
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,63,159,.35);
+      background: rgba(255,63,159,.08);
+      color: #ff8ac5;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 800px;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: .95;
+      letter-spacing: -5px;
+      margin-bottom: 24px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #ff4fa8, #a78bfa, #f5c451);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    section {
+      padding: 90px 22px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 40px;
+    }
+
+    .services {
+      background: var(--bg-soft);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card, .event-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: .25s;
+    }
+
+    .service-card:hover, .event-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,63,159,.35);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .service-card h3, .event-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .service-card p, .event-card p {
+      color: var(--muted);
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .event-card {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .event-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .quote {
+      background:
+        linear-gradient(135deg, rgba(255,63,159,.14), rgba(139,92,246,.12)),
+        var(--bg);
+    }
+
+    .quote-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .quote-info p {
+      color: var(--muted);
+      margin: 15px 0 25px;
+    }
+
+    .contact-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 14px;
+      background: #101017;
+      color: #fff;
+      outline: none;
+      font: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--pink);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .whatsapp {
+      margin-top: 18px;
+      display: block;
+      text-align: center;
+      background: #25d366;
+      color: #07130b;
+      font-weight: 900;
+      padding: 13px;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 22px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: .9rem;
+    }
+
+    footer strong {
+      color: #fff;
+    }
+
+    @media (max-width: 850px) {
+      .menu {
+        display: none;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quote-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .service-grid, .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      section {
+        padding: 70px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="#inicio" class="logo">Vibe<span>Eventos</span></a>
+
+      <ul class="menu">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#orcamento">Orçamento</a></li>
+      </ul>
+
+      <a class="btn btn-primary" href="#orcamento">Solicitar orçamento</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <div class="tag">✨ Seu momento merece uma vibe inesquecível</div>
+
+        <h1>
+          Seu evento.<br>
+          Nossa <span>Vibe.</span>
+        </h1>
+
+        <p>
+          Planejamos e realizamos eventos do seu jeito, cuidando de cada
+          detalhe para você aproveitar o momento. Do planejamento à última foto,
+          a Vibe Eventos está com você.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#orcamento" class="btn btn-primary">Quero meu orçamento</a>
+          <a href="#servicos" class="btn" style="border:1px solid var(--border);">Conhecer serviços</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicos">
+      <div class="container">
+        <h2 class="section-title">Tudo para o seu evento</h2>
+        <p class="section-subtitle">
+          Uma experiência completa, com serviços pensados para deixar seu
+          evento bonito, organizado e inesquecível.
+        </p>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="icon">📋</div>
+            <h3>Organização e Planejamento</h3>
+            <p>Planejamento completo para transformar sua ideia em um evento incrível.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">✨</div>
+            <h3>Decoração</h3>
+            <p>Ambientes personalizados para combinar com seu estilo e sua celebração.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">🍽️</div>
+            <h3>Buffet</h3>
+            <p>Opções gastronômicas para receber seus convidados com muito sabor.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">🎵</div>
+            <h3>Som e Iluminação</h3>
+            <p>Estrutura de som e iluminação para criar o clima perfeito.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">📸</div>
+            <h3>Fotografia</h3>
+            <p>Registre os melhores momentos e guarde cada detalhe para sempre.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">🎥</div>
+            <h3>Filmagem</h3>
+            <p>Vídeos para reviver as emoções do seu evento quantas vezes quiser.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="eventos">
+      <div class="container">
+        <h2 class="section-title">Qual é a sua vibe?</h2>
+        <p class="section-subtitle">
+          Conte com a Vibe Eventos para diferentes tipos de celebrações.
+        </p>
+
+        <div class="events-grid">
+          <article class="event-card">
+            <div class="event-icon">🎂</div>
+            <h3>Aniversários</h3>
+            <p>Do pequeno encontro à grande festa.</p>
+          </article>
+
+          <article class="event-card">
+            <div class="event-icon">💍</div>
+            <h3>Casamentos</h3>
+            <p>Um dia especial planejado nos mínimos detalhes.</p>
+          </article>
+
+          <article class="event-card">
+            <div class="event-icon">🎓</div>
+            <h3>Formaturas</h3>
+            <p>Comemore sua conquista com uma festa inesquecível.</p>
+          </article>
+
+          <article class="event-card">
+            <div class="event-icon">🏢</div>
+            <h3>Corporativos</h3>
+            <p>Eventos profissionais com organização e personalidade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote" id="orcamento">
+      <div class="container quote-layout">
+
+        <div class="quote-info">
+          <div class="tag">💬 Vamos conversar?</div>
+          <h2 class="section-title">Solicite seu orçamento</h2>
+          <p>
+            Preencha seus dados e conte um pouco sobre o evento que você
+            está planejando. Ao enviar, seu pedido será preparado para
+            contato pelo WhatsApp.
+          </p>
+
+          <p>
+            Preencha o formulário e nossa equipe entrará em contato para entender
+            seu evento e preparar uma proposta personalizada.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <form id="orcamentoForm">
+            <label>
+              Seu nome
+              <input type="text" id="nome" placeholder="Digite seu nome" required>
+            </label>
+
+            <label>
+              Telefone
+              <input type="tel" id="telefone" placeholder="(00) 00000-0000" required>
+            </label>
+
+            <label>
+              Tipo de evento
+              <select id="evento" required>
+                <option value="">Selecione uma opção</option>
+                <option>Aniversário</option>
+                <option>Casamento</option>
+                <option>Formatura</option>
+                <option>Evento corporativo</option>
+                <option>Outro</option>
+              </select>
+            </label>
+
+            <label>
+              Data prevista
+              <input type="date" id="data">
+            </label>
+
+            <label>
+              Número de convidados
+              <input type="number" id="convidados" min="1" placeholder="Ex.: 100">
+            </label>
+
+            <label>
+              Conte sobre seu evento
+              <textarea id="mensagem" placeholder="Conte o que você deseja para seu evento..."></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary">
+              Enviar solicitação de orçamento
+            </button>
+          </form>
+
+          <div style="margin-top:18px; padding:14px; border-radius:12px; background:#101017; border:1px solid var(--border); color:var(--muted); text-align:center;">
+            📩 A solicitação será encaminhada para nossa equipe.
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Vibe Eventos</strong> — Seu evento, nossa vibe. ✨</p>
+    <p>Entre em contato e transforme sua ideia em um evento inesquecível.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("orcamentoForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById("nome").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+      const evento = document.getElementById("evento").value;
+      const data = document.getElementById("data").value;
+      const convidados = document.getElementById("convidados").value;
+      const mensagem = document.getElementById("mensagem").value.trim();
+
+      const dataFormatada = data
+        ? new Date(data + "T00:00:00").toLocaleDateString("pt-BR")
+        : "Não informada";
+
+      const corpo =
+`Nova solicitação de orçamento — Vibe Eventos
+
+Nome: ${nome}
+Telefone: ${telefone}
+Tipo de evento: ${evento}
+Data prevista: ${dataFormatada}
+Número de convidados: ${convidados || "Não informado"}
+
+Detalhes:
+${mensagem || "Não informado"}`;
+
+      /*
+        O formulário usa mailto como solução sem servidor:
+        ao clicar, o aplicativo de e-mail do visitante abre uma mensagem
+        direcionada ao e-mail da Vibe Eventos.
+
+        Para envio automático sem abrir o aplicativo de e-mail,
+        conecte este formulário a um serviço como Formspree/Web3Forms
+        ou a um backend próprio.
+      */
+      const assunto = "Solicitação de orçamento — Vibe Eventos";
+      const mailto =
+        `mailto:Kahwsssilva@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+
+      window.location.href = mailto;
+    });
+  </script>
+
+</body>
+</html>
